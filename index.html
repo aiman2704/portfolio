@@ -7,58 +7,43 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #F5F0E8;
+            --warm: #E8DCC6;
+            --rich: #D4C4A8;
+            --deep: #B8A082;
+            --gold: #D4AF37;
+            --bronze: #CD7F32;
+            --brown: #8B4513;
+            --cream: #FFF8DC;
+            --shadow: rgba(212, 196, 168, 0.3);
+            --grad1: linear-gradient(135deg, #F5F0E8 0%, #E8DCC6 50%, #D4C4A8 100%);
+            --grad2: linear-gradient(135deg, #D4AF37 0%, #CD7F32 100%);
         }
 
-        :root {
-            --primary-beige: #F5F0E8;
-            --warm-beige: #E8DCC6;
-            --rich-beige: #D4C4A8;
-            --deep-beige: #B8A082;
-            --accent-gold: #D4AF37;
-            --accent-bronze: #CD7F32;
-            --dark-brown: #8B4513;
-            --cream: #FFF8DC;
-            --soft-shadow: rgba(212, 196, 168, 0.3);
-            --gradient-1: linear-gradient(135deg, #F5F0E8 0%, #E8DCC6 50%, #D4C4A8 100%);
-            --gradient-2: linear-gradient(135deg, #D4AF37 0%, #CD7F32 100%);
-            --gradient-3: linear-gradient(135deg, #B8A082 0%, #8B4513 100%);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--dark-brown);
-            background: var(--gradient-1);
+            color: var(--brown);
+            background: var(--grad1);
             min-height: 100vh;
-            position: relative;
             overflow-x: hidden;
         }
 
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: 
                 radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(205, 127, 50, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(184, 160, 130, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 80% 20%, rgba(205, 127, 50, 0.1) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
 
         .card {
             background: linear-gradient(145deg, rgba(255, 248, 220, 0.95), rgba(245, 240, 232, 0.95));
@@ -66,9 +51,7 @@
             border-radius: 30px;
             padding: 50px;
             margin: 30px 0;
-            box-shadow: 
-                0 25px 50px var(--soft-shadow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            box-shadow: 0 25px 50px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.6);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
@@ -86,65 +69,34 @@
             transition: left 0.6s;
         }
 
-        .card:hover::before {
-            left: 100%;
-        }
-
+        .card:hover::before { left: 100%; }
         .card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 
-                0 40px 80px var(--soft-shadow),
-                0 10px 30px rgba(212, 175, 55, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            box-shadow: 0 40px 80px var(--shadow), 0 10px 30px rgba(212, 175, 55, 0.2);
         }
 
         .header {
             text-align: center;
-            background: var(--gradient-2);
+            background: var(--grad2);
             color: white;
-            padding: 100px 50px;
+            padding: 80px 50px;
             border-radius: 40px;
             margin-bottom: 40px;
             position: relative;
             overflow: hidden;
-            box-shadow: 
-                0 30px 60px rgba(212, 175, 55, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
         }
 
         .header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%),
-                conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
             animation: rotate 25s linear infinite;
         }
 
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
+        @keyframes rotate { to { transform: rotate(360deg); } }
 
         .profile-img {
             width: 200px;
@@ -166,183 +118,146 @@
             overflow: hidden;
         }
 
-        .name {
-            font-family: 'Playfair Display', serif;
-            font-size: 5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 
-                2px 2px 4px rgba(0,0,0,0.3),
-                0 0 20px rgba(255,255,255,0.2);
-            background: linear-gradient(45deg, #fff, #f0f0f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .profile-img img {
+            width: 140%;
+            height: auto;
+            border-radius: 50%;
         }
 
-        .title {
-            font-size: 2.2em;
-            font-weight: 300;
-            margin-bottom: 25px;
-            opacity: 0.95;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .subtitle {
-            font-size: 1.4em;
-            opacity: 0.85;
-            margin-bottom: 40px;
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 30px;
             font-style: italic;
             font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 30px;
             flex-wrap: wrap;
-            margin-top: 40px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             color: rgba(255,255,255,0.9);
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: 500;
             background: rgba(255,255,255,0.1);
-            padding: 15px 25px;
-            border-radius: 50px;
+            padding: 12px 20px;
+            border-radius: 25px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
         }
 
         .contact-item:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-3px) scale(1.05);
             background: rgba(255,255,255,0.2);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5em;
-            color: var(--dark-brown);
-            margin-bottom: 50px;
+            font-size: 3em;
+            color: var(--brown);
+            margin-bottom: 40px;
             text-align: center;
             position: relative;
             font-weight: 600;
-        }
-
-        .section-title::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-2);
-            z-index: -1;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -20px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 6px;
-            background: var(--gradient-2);
-            border-radius: 3px;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            width: 100px;
+            height: 4px;
+            background: var(--grad2);
+            border-radius: 2px;
         }
 
         .section-title span {
-            background: var(--primary-beige);
-            padding: 0 30px;
-            position: relative;
-            z-index: 1;
+            background: var(--primary);
+            padding: 0 20px;
         }
 
         .about-content {
-            font-size: 1.4em;
+            font-size: 1.3em;
             text-align: center;
-            color: var(--dark-brown);
-            line-height: 2;
-            max-width: 1000px;
+            color: var(--brown);
+            line-height: 1.8;
+            max-width: 900px;
             margin: 0 auto;
             font-weight: 400;
-            padding: 30px;
+            padding: 25px;
             background: rgba(255, 248, 220, 0.3);
-            border-radius: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
         }
 
-        .skills-grid {
+        .skills-grid, .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .skill-category {
-            background: var(--gradient-2);
-            padding: 45px;
-            border-radius: 25px;
+            background: var(--grad2);
+            padding: 35px;
+            border-radius: 20px;
             color: white;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 
-                0 20px 40px rgba(212, 175, 55, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
         }
 
         .skill-category:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 
-                0 30px 60px rgba(212, 175, 55, 0.4),
-                0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
         }
 
         .skill-category h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2em;
-            margin-bottom: 30px;
+            font-size: 1.8em;
+            margin-bottom: 25px;
             font-weight: 600;
-            position: relative;
-            z-index: 1;
         }
 
         .skill-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
-            position: relative;
-            z-index: 1;
         }
 
         .skill-tag {
             background: rgba(255,255,255,0.25);
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 1.1em;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 1em;
             backdrop-filter: blur(10px);
             font-weight: 500;
             border: 1px solid rgba(255,255,255,0.3);
@@ -352,260 +267,137 @@
         .skill-tag:hover {
             background: rgba(255,255,255,0.4);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Projects Section Styles */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
         }
 
         .project-item {
-            background: var(--gradient-1);
-            padding: 40px;
-            border-radius: 25px;
+            background: var(--grad1);
+            padding: 35px;
+            border-radius: 20px;
             text-align: center;
-            position: relative;
-            border: 2px solid var(--accent-gold);
-            box-shadow: 
-                0 25px 50px var(--soft-shadow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            border: 2px solid var(--gold);
+            box-shadow: 0 25px 50px var(--shadow);
             transition: all 0.4s ease;
         }
 
         .project-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 
-                0 35px 70px var(--soft-shadow),
-                0 10px 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 35px 70px var(--shadow);
         }
 
         .project-item h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8em;
+            font-size: 1.6em;
             font-weight: 700;
-            color: var(--dark-brown);
-            margin-bottom: 20px;
+            color: var(--brown);
+            margin-bottom: 15px;
         }
 
         .project-item p {
-            font-size: 1.2em;
-            color: var(--deep-beige);
-            margin-bottom: 25px;
-            line-height: 1.6;
+            font-size: 1.1em;
+            color: var(--deep);
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .tech-tag {
             background: rgba(212, 175, 55, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            color: var(--dark-brown);
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            color: var(--brown);
             font-weight: 500;
-            border: 1px solid var(--accent-gold);
+            border: 1px solid var(--gold);
         }
 
         .project-links {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn-small {
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1em;
+            font-size: 0.9em;
             transition: all 0.3s ease;
-            background: var(--gradient-2);
+            background: var(--grad2);
             color: white;
-            border: 2px solid transparent;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-small:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        .education-item {
-            background: var(--gradient-1);
-            padding: 50px;
-            border-radius: 25px;
-            text-align: center;
-            position: relative;
-            border: 2px solid var(--accent-gold);
-            box-shadow: 
-                0 25px 50px var(--soft-shadow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
-        }
-
-        .education-item::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--gradient-2);
-            border-radius: 25px;
-            z-index: -1;
-        }
-
-        .degree {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2em;
-            font-weight: 700;
-            color: var(--dark-brown);
-            margin-bottom: 20px;
-        }
-
-        .university {
-            font-size: 1.5em;
-            color: var(--deep-beige);
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .graduation-info {
-            font-size: 1.2em;
-            color: var(--dark-brown);
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-
-        .coursework {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .course-tag {
-            background: rgba(212, 175, 55, 0.2);
-            padding: 12px 22px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            color: var(--dark-brown);
-            font-weight: 500;
-            border: 1px solid var(--accent-gold);
-            transition: all 0.3s ease;
-        }
-
-        .course-tag:hover {
-            background: var(--accent-gold);
-            color: white;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
         }
 
-        .cta-section {
-            background: var(--gradient-2);
-            color: white;
-            text-align: center;
-            padding: 70px 50px;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 30px 60px rgba(212, 175, 55, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            overflow-y: auto;
         }
 
-        .cta-section::before {
-            content: '';
+        .close {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M40 40c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm20 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .cta-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2em;
-            margin-bottom: 25px;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-text {
-            font-size: 1.4em;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn {
-            padding: 18px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2em;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            margin: 0 15px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: rgba(255,255,255,0.2);
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
             color: white;
-            border: 2px solid rgba(255,255,255,0.4);
-            backdrop-filter: blur(15px);
+            cursor: pointer;
+            z-index: 1000;
         }
 
-        .btn-primary::before {
-            content: '';
+        .carousel-container {
+            position: relative;
+            max-width: 90%;
+            margin: 80px auto;
+        }
+
+        .carousel-slide {
+            display: none;
+            text-align: center;
+        }
+
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .prev, .next {
+            cursor: pointer;
             position: absolute;
             top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.3);
+            padding: 16px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            transform: translateY(-50%);
             border-radius: 50%;
-            transition: all 0.4s ease;
-            transform: translate(-50%, -50%);
         }
 
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.3),
-                0 5px 15px rgba(255,255,255,0.2);
-        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
 
         .floating-elements {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
             z-index: -1;
         }
@@ -617,169 +409,76 @@
         }
 
         .floating-shape:nth-child(1) {
-            width: 120px;
-            height: 120px;
+            width: 120px; height: 120px;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
+            top: 10%; left: 5%;
         }
 
         .floating-shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
+            width: 150px; height: 150px;
             background: radial-gradient(circle, rgba(205, 127, 50, 0.08), rgba(205, 127, 50, 0.03));
-            top: 60%;
-            right: 10%;
+            top: 60%; right: 10%;
             animation-delay: 3s;
         }
 
         .floating-shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
+            width: 100px; height: 100px;
             background: radial-gradient(circle, rgba(184, 160, 130, 0.1), rgba(184, 160, 130, 0.05));
-            bottom: 20%;
-            left: 20%;
+            bottom: 20%; left: 20%;
             animation-delay: 6s;
         }
 
-        .floating-shape:nth-child(4) {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.04));
-            top: 30%;
-            right: 30%;
-            animation-delay: 9s;
-        }
-
         @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg) scale(1); 
-                opacity: 0.7;
-            }
-            25% { 
-                transform: translateY(-30px) rotate(90deg) scale(1.1); 
-                opacity: 1;
-            }
-            50% { 
-                transform: translateY(-60px) rotate(180deg) scale(0.9); 
-                opacity: 0.8;
-            }
-            75% { 
-                transform: translateY(-30px) rotate(270deg) scale(1.1); 
-                opacity: 1;
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-40px) rotate(180deg); opacity: 1; }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .card {
-                padding: 35px 25px;
-            }
-            
-            .name {
-                font-size: 3.5em;
-            }
-            
-            .title {
-                font-size: 1.6em;
-            }
-            
-            .contact-info {
-                gap: 25px;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .skills-grid, .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2.8em;
-            }
-
-            .profile-img {
-                width: 160px;
-                height: 160px;
-                font-size: 60px;
-            }
-
-            .btn {
-                margin: 10px 0;
-            }
-
-            .project-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: var(--gradient-2);
-            z-index: 1000;
-            transition: width 0.3s ease;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            .container { padding: 15px; }
+            .card { padding: 25px 20px; }
+            .name { font-size: 3em; }
+            .contact-info { gap: 15px; flex-direction: column; align-items: center; }
+            .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.5em; }
+            .profile-img { width: 120px; height: 120px; font-size: 50px; }
+            .project-links { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
-    <div class="scroll-indicator" id="scrollIndicator"></div>
-    
     <div class="floating-elements">
-        <div class="floating-shape"></div>
         <div class="floating-shape"></div>
         <div class="floating-shape"></div>
         <div class="floating-shape"></div>
     </div>
 
     <div class="container">
-        <!-- Header Section -->
+        <!-- Header -->
         <div class="header">
-            <div class="header-content">
-               <div class="profile-img">
-    <img src="pic.jpg" alt="Umme Aiman" 
-         style="width: 140%; height: auto;" 
-         onerror="this.style.display='none'; this.parentNode.innerHTML='UA';" />
-</div>
-                <h1 class="name">Umme Aiman</h1>
-                <p class="subtitle">Computer Science Graduate passionate about Web Development & UI Design — a problem solver, design enthusiast, and always curious.</p>
-
-                <div class="contact-info">
-                    <a href="mailto:ummeaiman2704@gmail.com" class="contact-item">
-                        📧 ummeaiman2704@gmail.com
-                    </a>
-                    <a href="tel:+91 8123555715" class="contact-item">
-                        📱 +91 8123555715
-                    </a>
-                    <a href="https://github.com/aiman2704" class="contact-item">
-                        💻 GitHub
-                    </a>
-                    <a href="http://linkedin.com/in/umme-aiman-66064724a/" class="contact-item">
-                        🔗 LinkedIn
-                    </a>
-                </div>
+            <div class="profile-img">
+                <img src="pic.jpg" alt="Umme Aiman" onerror="this.style.display='none'; this.parentNode.innerHTML='UA';" />
+            </div>
+            <h1 class="name">Umme Aiman</h1>
+            <p class="subtitle">Computer Science Graduate passionate about Web Development & UI Design — a problem solver, design enthusiast, and always curious.</p>
+            <div class="contact-info">
+                <a href="mailto:ummeaiman2704@gmail.com" class="contact-item">📧 ummeaiman2704@gmail.com</a>
+                <a href="tel:+91 8123555715" class="contact-item">📱 +91 8123555715</a>
+                <a href="https://github.com/aiman2704" class="contact-item">💻 GitHub</a>
+                <a href="http://linkedin.com/in/umme-aiman-66064724a/" class="contact-item">🔗 LinkedIn</a>
             </div>
         </div>
 
-        <!-- About Section -->
+        <!-- About -->
         <div class="card">
             <h2 class="section-title"><span>About Me</span></h2>
             <p class="about-content">
-               A Computer Science graduate with a keen interest in web development, looking to begin my professional journey in the tech industry.
+                A Computer Science graduate with a keen interest in web development, looking to begin my professional journey in the tech industry.
                 Eager to apply my learning in real-world projects, grow with hands-on experience, and contribute to a creative and collaborative team.
                 Open to opportunities that allow me to explore and improve as a developer.
             </p>
         </div>
 
-        <!-- Skills Section -->
+        <!-- Skills -->
         <div class="card">
             <h2 class="section-title"><span>Technical Skills</span></h2>
             <div class="skills-grid">
@@ -809,77 +508,263 @@
                         <span class="skill-tag">VS Code</span>
                         <span class="skill-tag">Linux</span>
                         <span class="skill-tag">Canva</span>
-                        <span class="skill-tag">Latex</span>
+                        <span class="skill-tag">LaTeX</span>
                     </div>
                 </div>
             </div>
         </div>
 
-     <div class="card" id="projects">
-    <h2 class="section-title"><span>My Projects</span></h2>
-    <div class="projects-grid">
+        <!-- Projects -->
+        <div class="card">
+            <h2 class="section-title"><span>My Projects</span></h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <h3>Aiza's Bakehouse</h3>
+                    <p>eCommerce bakery website with role-based login, shopping cart, admin dashboard, and secure checkout.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="btn-small" onclick="openAizaModal()">View Screenshots</button>
+                    </div>
+                </div>
 
-        <!-- Project 1: Aiza's Bakehouse -->
-        <div class="project-item">
-            <h3>Aiza's Bakehouse</h3>
-            <p>eCommerce bakery website with role-based login, shopping cart, admin dashboard, and secure checkout.</p>
-            <div class="tech-stack">
-                <span class="tech-tag">HTML</span>
-                <span class="tech-tag">CSS</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">PHP</span>
-                <span class="tech-tag">MySQL</span>
-            </div>
-            <div class="project-links">
-                <a href="http://localhost/bakehouse/dashboard.php" class="btn-small" target="_blank">Live Demo</a>
-                <a href="https://github.com/yourgithub/aizas-bakehouse" class="btn-small" target="_blank">GitHub</a>
+                <div class="project-item">
+                    <h3>Healthy-You Fitness App</h3>
+                    <p>A mobile-responsive web app designed to help users track their fitness goals, workouts, and daily health habits.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Figma</span>
+                        <span class="tech-tag">Canva</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="http://figma.com/design/zJhwv83EnKjB5XEnrDtrXN/Untitled?node-id=0-1&p=f&t=GY8QrhVZoto5xIMo-0" class="btn-small" target="_blank">View Design</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>TaskFlow</h3>
+                    <p>TaskFlow is a productivity website designed for teens to prioritize tasks and stay organized with a clean, user-friendly interface.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="todo.html" class="btn-small">View </a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>CineSphere</h3>
+                    <p>CineSphere is a movie booking login page with a cinematic UI and secure user login.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">PHP</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="btn-small" onclick="openMovieModal()">View Screenshot</button>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>College Event Backdrops</h3>
+                    <p>Contributed to visual themes for college functions through creative backdrop concepts.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Design</span>
+                        <span class="tech-tag">Creativity</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="btn-small" onclick="openBackdropModal()">View Gallery</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Project 2: Healthy-You fitness app -->
-        <div class="project-item">
-            <h3>Healthy-You fitness app</h3>
-            <p>A mobile-responsive web app designed to help users track their fitness goals, workouts, and daily health habits.</p>
-            <div class="tech-stack">
-                <span class="tech-tag">Figma</span>
-                <span class="tech-tag">Canva</span>
+    <!-- Aiza's Bakehouse Modal -->
+    <div id="aizaModal" class="modal">
+        <span class="close" onclick="closeAizaModal()">&times;</span>
+        <div class="carousel-container">
+            <button class="prev" onclick="aizaPlusSlides(-1)">❮</button>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="1.jpg" alt="Homepage">
             </div>
-            <div class="project-links">
-                <a href="http://figma.com/design/zJhwv83EnKjB5XEnrDtrXN/Untitled?node-id=0-1&p=f&t=GY8QrhVZoto5xIMo-0" class="btn-small" target="_blank">View</a>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="dashboard.JPG" alt="Dashboard">
             </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="menu.JPG" alt="Menu">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="specialities.JPG" alt="Specialities">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="cart.JPG" alt="Cart">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="reveiws.JPG" alt="Reviews">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="contact.JPG" alt="Contact">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="customization.JPG" alt="Customization">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="admindashboard.JPG" alt="Admin Dashboard">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="manageusers.JPG" alt="Manage Users">
+            </div>
+            <div class="carousel-slide aiza-slide fade">
+                <img src="orderman.JPG" alt="Order Management">
+            </div>
+            <button class="next" onclick="aizaPlusSlides(1)">❯</button>
         </div>
+    </div>
 
-        <!-- Project 3: Task flow -->
-        <div class="project-item">
-            <h3>TaskFlow</h3>
-            <p>TaskFlow is a productivity website designed for teens to prioritize tasks and stay organized with a clean, user-friendly interface.</p>
-            <div class="tech-stack">
-                <span class="tech-tag">HTML</span>
-                <span class="tech-tag">CSS</span>
-                <span class="tech-tag">JavaScript</span>
+    <!-- CineSphere Movie Modal -->
+    <div id="movieModal" class="modal">
+        <span class="close" onclick="closeMovieModal()">&times;</span>
+        <div class="carousel-container">
+            <button class="prev" onclick="moviePlusSlides(-1)">❮</button>
+            <div class="carousel-slide movie-slide fade">
+                <img src="movie.JPG" alt="CineSphere Login Page">
             </div>
-            <div class="project-links">
-                <a href="todo.html" class="btn-small" target="_blank">View</a>
-            </div>
+            <button class="next" onclick="moviePlusSlides(1)">❯</button>
         </div>
- <!-- Project 4: Cine-Sphere -->
-        <div class="project-item">
-    <h3>CineSphere</h3>
-    <p>CineSphere is a movie booking login page with a cinematic UI and secure user login.</p>
-    <div class="tech-stack">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">PHP</span>
     </div>
-    <div class="project-links">
 
-        <a href="movie.JPG" class="btn-small" target="_blank">View</a>
+    <!-- College Event Backdrops Modal -->
+    <div id="backdropModal" class="modal">
+        <span class="close" onclick="closeBackdropModal()">&times;</span>
+        <div class="carousel-container">
+            <button class="prev" onclick="backdropPlusSlides(-1)">❮</button>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b9.png" alt="Backdrop 1">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b4.png" alt="Backdrop 2">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b3.png" alt="Backdrop 3">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b1.png" alt="Backdrop 4">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b2.png" alt="Backdrop 5">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b11.png" alt="Backdrop 6">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b6.png" alt="Backdrop 7">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b7.png" alt="Backdrop 8">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b8.png" alt="Backdrop 9">
+            </div>
+            <div class="carousel-slide backdrop-slide fade">
+                <img src="b10.png" alt="Backdrop 10">
+            </div>
+            <button class="next" onclick="backdropPlusSlides(1)">❯</button>
+        </div>
     </div>
-</div>
 
+    <script>
+        let aizaSlideIndex = 1;
+        let movieSlideIndex = 1;
+        let backdropSlideIndex = 1;
 
-    </div>
-</div>
+        // Aiza's Bakehouse Modal Functions
+        function openAizaModal() {
+            document.getElementById("aizaModal").style.display = "block";
+            showAizaSlides(aizaSlideIndex);
+        }
 
-</div>
+        function closeAizaModal() {
+            document.getElementById("aizaModal").style.display = "none";
+        }
+
+        function aizaPlusSlides(n) {
+            showAizaSlides(aizaSlideIndex += n);
+        }
+
+        function showAizaSlides(n) {
+            let slides = document.getElementsByClassName("aiza-slide");
+            if (n > slides.length) aizaSlideIndex = 1;
+            if (n < 1) aizaSlideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[aizaSlideIndex-1].style.display = "block";
+        }
+
+        // CineSphere Movie Modal Functions
+        function openMovieModal() {
+            document.getElementById("movieModal").style.display = "block";
+            showMovieSlides(movieSlideIndex);
+        }
+
+        function closeMovieModal() {
+            document.getElementById("movieModal").style.display = "none";
+        }
+
+        function moviePlusSlides(n) {
+            showMovieSlides(movieSlideIndex += n);
+        }
+
+        function showMovieSlides(n) {
+            let slides = document.getElementsByClassName("movie-slide");
+            if (n > slides.length) movieSlideIndex = 1;
+            if (n < 1) movieSlideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[movieSlideIndex-1].style.display = "block";
+        }
+
+        // College Event Backdrops Modal Functions
+        function openBackdropModal() {
+            document.getElementById("backdropModal").style.display = "block";
+            showBackdropSlides(backdropSlideIndex);
+        }
+
+        function closeBackdropModal() {
+            document.getElementById("backdropModal").style.display = "none";
+        }
+
+        function backdropPlusSlides(n) {
+            showBackdropSlides(backdropSlideIndex += n);
+        }
+
+        function showBackdropSlides(n) {
+            let slides = document.getElementsByClassName("backdrop-slide");
+            if (n > slides.length) backdropSlideIndex = 1;
+            if (n < 1) backdropSlideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[backdropSlideIndex-1].style.display = "block";
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const aizaModal = document.getElementById("aizaModal");
+            const movieModal = document.getElementById("movieModal");
+            const backdropModal = document.getElementById("backdropModal");
+            if (event.target == aizaModal) aizaModal.style.display = "none";
+            if (event.target == movieModal) movieModal.style.display = "none";
+            if (event.target == backdropModal) backdropModal.style.display = "none";
+        }
+    </script>
+</body>
 </html>
