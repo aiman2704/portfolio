@@ -472,7 +472,7 @@
         <div class="card">
             <h2 class="section-title"><span>About Me</span></h2>
             <p class="about-content">
-                 I’m a BSc Computer Science and Mathematics graduate with a passion for both web development and design. 
+                 I'm a BSc Computer Science and Mathematics graduate with a passion for both web development and design. 
                 I enjoy crafting clean, responsive websites that are functional and visually engaging—where creativity meets code.
             </p>
         </div>
@@ -531,6 +531,20 @@
                         <button class="btn-small" onclick="openAizaModal()">View Screenshots</button>
                     </div>
                 </div>
+
+                <div class="project-item">
+                    <h3>Inamigos Foundation</h3>
+                    <p>Designed multiple website layouts and promotional materials for a non-profit foundation focused on community development and social impact initiatives.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Web Design</span>
+                        <span class="tech-tag">Figma</span>
+                        <span class="tech-tag">UI/UX</span>
+                        <span class="tech-tag">Canva</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="btn-small" onclick="openInamigosModal()">View Designs</button>
+                    </div>
+                </div>
                 
                 <div class="project-item">
                     <h3>TradPlay website</h3>
@@ -540,6 +554,18 @@
                     </div>
                     <div class="project-links">
                         <a href="https://www.figma.com/design/ZEkdBwYwb1gYbUCs0aAQ5B/TradPlay?node-id=0-1&p=f&t=AQEWBQLLfUcLBKAY-0" class="btn-small" target="_blank">View Design</a>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <h3>Content writing website</h3>
+                    <p>Designed a user-friendly AI content writing app in Figma, aimed at helping writers generate high-quality content
+                        efficiently — created as part of a technical assignment for a content-driven company.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Figma </span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.figma.com/design/tC0ncbZ1R9LbxCyCZgRSCN/abun-landing-page?node-id=0-1&p=f&t=1arAcqyRDtoO9Wq5-0" class="btn-small" target="_blank">View Design</a>
                     </div>
                 </div>
 
@@ -636,6 +662,33 @@
         </div>
     </div>
 
+    <!-- Inamigos Foundation Modal -->
+    <div id="inamigosModal" class="modal">
+        <span class="close" onclick="closeInamigosModal()">&times;</span>
+        <div class="carousel-container">
+            <button class="prev" onclick="inamigosPlusSlides(-1)">❮</button>
+            <div class="carousel-slide inamigos-slide fade">
+                <img src="inamigos1.jpeg" alt="Inamigos Foundation Design 1">
+            </div>
+            <div class="carousel-slide inamigos-slide fade">
+                <img src="inamigos2.jpeg" alt="Inamigos Foundation Design 2">
+            </div>
+            <div class="carousel-slide inamigos-slide fade">
+                <img src="inamigos3.jpeg" alt="Inamigos Foundation Design 3">
+            </div>
+            <div class="carousel-slide inamigos-slide fade">
+                <img src="inamigos4.jpeg" alt="Inamigos Foundation Design 4">
+            </div>
+            <div class="carousel-slide inamigos-slide fade">
+                <img src="inamigos5.jpeg" alt="Inamigos Foundation Design 5">
+            </div>
+            <div class="carousel-slide inamigos-slide fade">
+                <img src="inamigos6.jpeg" alt="Inamigos Foundation Design 6">
+            </div>
+            <button class="next" onclick="inamigosPlusSlides(1)">❯</button>
+        </div>
+    </div>
+
     <!-- CineSphere Movie Modal -->
     <div id="movieModal" class="modal">
         <span class="close" onclick="closeMovieModal()">&times;</span>
@@ -689,6 +742,7 @@
 
     <script>
         let aizaSlideIndex = 1;
+        let inamigosSlideIndex = 1;
         let movieSlideIndex = 1;
         let backdropSlideIndex = 1;
 
@@ -714,6 +768,30 @@
                 slides[i].style.display = "none";
             }
             slides[aizaSlideIndex-1].style.display = "block";
+        }
+
+        // Inamigos Foundation Modal Functions
+        function openInamigosModal() {
+            document.getElementById("inamigosModal").style.display = "block";
+            showInamigosSlides(inamigosSlideIndex);
+        }
+
+        function closeInamigosModal() {
+            document.getElementById("inamigosModal").style.display = "none";
+        }
+
+        function inamigosPlusSlides(n) {
+            showInamigosSlides(inamigosSlideIndex += n);
+        }
+
+        function showInamigosSlides(n) {
+            let slides = document.getElementsByClassName("inamigos-slide");
+            if (n > slides.length) inamigosSlideIndex = 1;
+            if (n < 1) inamigosSlideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[inamigosSlideIndex-1].style.display = "block";
         }
 
         // CineSphere Movie Modal Functions
@@ -767,9 +845,11 @@
         // Close modals when clicking outside
         window.onclick = function(event) {
             const aizaModal = document.getElementById("aizaModal");
+            const inamigosModal = document.getElementById("inamigosModal");
             const movieModal = document.getElementById("movieModal");
             const backdropModal = document.getElementById("backdropModal");
             if (event.target == aizaModal) aizaModal.style.display = "none";
+            if (event.target == inamigosModal) inamigosModal.style.display = "none";
             if (event.target == movieModal) movieModal.style.display = "none";
             if (event.target == backdropModal) backdropModal.style.display = "none";
         }
